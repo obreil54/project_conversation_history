@@ -1,0 +1,20 @@
+<div class="container mx-auto px-4">
+  <div class="flex justify-center mb-8">
+    <%= button_to "Log out", session_path, method: :delete, class: "px-6 py-2 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200" if authenticated? %>
+  </div>
+
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <% @projects.each do |project| %>
+      <div class="flex flex-col p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+        <h2 class="text-xl font-bold text-gray-800 mb-2"><%= project.name %></h2>
+        <p class="text-gray-600 mb-4 flex-grow"><%= project.description %></p>
+        <div class="flex items-center justify-between mt-auto">
+          <span class="<%= project.status_color_class %> px-3 py-1 rounded-full text-sm font-medium">
+            <%= project.status.humanize.titleize %>
+          </span>
+          <%= link_to "View Details", project_path(project), class: "inline-flex items-center px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors duration-200" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
