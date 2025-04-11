@@ -1,0 +1,12 @@
+<%= turbo_stream.replace "activity-feed" do %>
+  <%= render "activities/feed", activities: @project.activities.order(created_at: :desc) %>
+<% end %>
+
+<%= turbo_stream.replace "comment-form" do %>
+  <%= form_with url: project_comments_path(@project), id: "comment-form", data: { turbo: true } do |f| %>
+    <div class="flex">
+      <%= f.text_area :content, placeholder: "Add a comment...", class: "flex-grow rounded-l border-gray-300 text-sm", rows: 2 %>
+      <%= f.submit "Comment", class: "rounded-r bg-indigo-600 text-white px-4 py-2 text-sm font-medium hover:bg-indigo-700" %>
+    </div>
+  <% end %>
+<% end %>

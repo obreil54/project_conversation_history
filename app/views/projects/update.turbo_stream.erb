@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "activity-feed" do %>
+  <%= render "activities/feed", activities: @project.activities.order(created_at: :desc) %>
+<% end %>

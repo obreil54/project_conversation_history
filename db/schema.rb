@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_11_121904) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_11_143354) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "activities", force: :cascade do |t|
+    t.bigint "project_id", null: false
+    t.bigint "user_id", null: false
+    t.string "action_type"
+    t.jsonb "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_activities_on_project_id"
+    t.index ["user_id"], name: "index_activities_on_user_id"
+  end
 
   create_table "projects", force: :cascade do |t|
     t.string "name", null: false
@@ -41,5 +52,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_11_121904) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "activities", "projects"
+  add_foreign_key "activities", "users"
   add_foreign_key "sessions", "users"
 end
