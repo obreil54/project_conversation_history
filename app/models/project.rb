@@ -9,6 +9,10 @@ class Project < ApplicationRecord
 
   validates :name, :description, :status, presence: true
 
+  has_many :activities, dependent: :destroy
+
+  before_update :log_status_change, if: :status_changed?
+
   def status_color_class
     {
       "not_started" => "bg-gray-100 text-gray-800",
@@ -17,5 +21,26 @@ class Project < ApplicationRecord
       "completed" => "bg-green-100 text-green-800",
       "cancelled" => "bg-red-100 text-red-800"
     }[status]
+  end
+
+  def add_comment(comment)
+    activities.create(
+      user: Current.user,
+      action_type: "comment",
+      data: { comment: comment }
+    )
+  end
+
+  private
+
+  def log_status_change
+    activities.create(
+      user: Current.user,
+      action_type: "status_change",
+      data: {
+        from: status_was,
+        to: status
+      }
+    )
   end
 end
