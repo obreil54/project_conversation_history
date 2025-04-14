@@ -19,7 +19,7 @@ This application allows users to track project status changes and maintain a con
 - PostgreSQL database
 - TailwindCSS for styling
 - Hotwire (Turbo + Stimulus) for real-time updates
-- ActionCable for WebSocket communication
+- SolidCable for WebSocket communication
 
 ## Setup Instructions
 
