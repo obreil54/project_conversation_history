@@ -18,7 +18,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_11_143354) do
     t.bigint "project_id", null: false
     t.bigint "user_id", null: false
     t.string "action_type"
-    t.jsonb "data"
+    t.json "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["project_id"], name: "index_activities_on_project_id"
