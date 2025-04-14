@@ -6,10 +6,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     if @project.update(project_params)
-      respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to @project }
-      end
+      render json: {}, status: :no_content
     else
       render :show, status: :unprocessable_entity
     end

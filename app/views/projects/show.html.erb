@@ -25,7 +25,7 @@
     </div>
 
     <div class="mt-8 border-t pt-4">
-      <h2 class="text-lg font-semibold mb-4">Activity</h2>
+      <h2 class="text-lg font-semibold mb-4">Project Conversation History</h2>
 
       <div class="mb-6">
         <%= form_with url: project_comments_path(@project), id: "comment-form", data: { turbo: true } do |f| %>
@@ -36,8 +36,14 @@
         <% end %>
       </div>
 
-      <div id="activity-feed">
-        <%= render "activities/feed", activities: @project.activities.order(created_at: :desc) %>
+      <%= turbo_stream_from @project, "activities" %>
+      <div id="activity-feed" class="space-y-3">
+        <% @activities = @project.activities.order(created_at: :desc) %>
+        <% if @activities.any? %>
+          <% @activities.each do |activity| %>
+            <%= render "activities/activity", activity: activity %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

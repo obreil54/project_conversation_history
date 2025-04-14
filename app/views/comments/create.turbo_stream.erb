@@ -1,7 +1,3 @@
-<%= turbo_stream.replace "activity-feed" do %>
-  <%= render "activities/feed", activities: @project.activities.order(created_at: :desc) %>
-<% end %>
-
 <%= turbo_stream.replace "comment-form" do %>
   <%= form_with url: project_comments_path(@project), id: "comment-form", data: { turbo: true } do |f| %>
     <div class="flex">
