@@ -19,7 +19,7 @@ This application allows users to track project status changes and maintain a con
 - PostgreSQL database
 - TailwindCSS for styling
 - Hotwire (Turbo + Stimulus) for real-time updates
-- SolidCable for WebSocket communication
+- ActionCable and SolidCable adaptor for WebSocket communication
 
 ## Setup Instructions
 
@@ -33,7 +33,7 @@ This application allows users to track project status changes and maintain a con
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/project_conversation_history.git
+   git clone https://github.com/obreil54/project_conversation_history.git
    cd project_conversation_history
    ```
 
