@@ -103,3 +103,7 @@ production:
     url: <%= ENV['CABLE_DATABASE_URL'] %>
     pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
     migrations_paths: db/cable_migrate
+  solid_queue:
+    url: <%= ENV['CABLE_DATABASE_URL'] %>
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    migrations_paths: db/solid_queue_migrate
