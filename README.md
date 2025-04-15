@@ -98,12 +98,14 @@ A: Don't worry about testing for this assessment
   - Contains logic for status change tracking
 
 - `Activity` model:
-  - Polymorphic model that tracks both comments and status changes
+  - Model that tracks both comments and status changes
   - Uses ActionCable to broadcast changes in real-time
 
 - `User` model:
   - Handles authentication with has_secure_password
   - Associates users with their comments and status changes
+  - Implemented using the Rails Authentication generator
+  - Registration logic implemented manually
 
 - Controllers:
   - `ProjectsController`: Handles project listing and showing
